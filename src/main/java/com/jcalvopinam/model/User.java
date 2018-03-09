@@ -24,11 +24,14 @@
 
 package com.jcalvopinam.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
+// Is necessary ignore properties that proxy doesn't know as for example fullName and yearOfBirth
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
 
     private final UUID userId;
