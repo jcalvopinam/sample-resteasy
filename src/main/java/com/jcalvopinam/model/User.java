@@ -24,6 +24,8 @@
 
 package com.jcalvopinam.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -36,7 +38,12 @@ public class User {
     private final Integer age;
     private final String email;
 
-    public User(UUID userId, String firstName, String lastName, Gender gender, Integer age, String email) {
+    public User(@JsonProperty("userId") UUID userId,
+                @JsonProperty("firstName") String firstName,
+                @JsonProperty("lastName") String lastName,
+                @JsonProperty("gender") Gender gender,
+                @JsonProperty("age") Integer age,
+                @JsonProperty("email") String email) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -72,6 +79,16 @@ public class User {
 
     public String getEmail() {
         return email;
+    }
+
+    // fullName: Extra compute json property
+    public String getFullName() {
+        return String.format("%s %s", firstName, lastName);
+    }
+
+    // yearOfBirth: Extra compute json property
+    public int getYearOfBirth() {
+        return LocalDate.now().minusYears(age).getYear();
     }
 
     @Override
