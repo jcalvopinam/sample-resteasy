@@ -26,7 +26,11 @@ package com.jcalvopinam.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.validator.constraints.Email;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -35,10 +39,23 @@ import java.util.UUID;
 public class User {
 
     private final UUID userId;
+
+    @NotNull(message = "First Name cannot be null")
     private final String firstName;
+
+    @NotNull(message = "Last Name cannot be null")
     private final String lastName;
+
+    @NotNull(message = "Gender cannot be null")
     private final Gender gender;
+
+    @NotNull(message = "Age cannot be null")
+    @Max(value = 85)
+    @Min(value = 18)
     private final Integer age;
+
+    @NotNull(message = "Email cannot be null")
+    @Email
     private final String email;
 
     public User(@JsonProperty("userId") UUID userId,

@@ -28,6 +28,7 @@ import com.jcalvopinam.model.User;
 import com.jcalvopinam.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
 import javax.ws.rs.*;
@@ -38,6 +39,7 @@ import java.util.UUID;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
+@Validated
 @Component
 @Path("/api/v1/users")
 public class UserController {
